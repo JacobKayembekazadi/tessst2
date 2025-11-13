@@ -66,6 +66,28 @@
     },
     "how-it-works": {
       "type": "how-it-works",
+      "blocks": {
+        "step_NfaWTJ": {
+          "type": "step",
+          "settings": {
+            "step_number": "1",
+            "title": "Set Your Goal",
+            "description": "Define your fitness milestones, experience level, and equipment in our 60-second questionnaire."
+          }
+        },
+        "step_B9aJGP": {
+          "type": "step",
+          "settings": {
+            "step_number": "1",
+            "title": "Set Your Goal",
+            "description": "Define your fitness milestones, experience level, and equipment in our 60-second questionnaire."
+          }
+        }
+      },
+      "block_order": [
+        "step_NfaWTJ",
+        "step_B9aJGP"
+      ],
       "settings": {
         "heading": "Three Steps to a New You",
         "show_cta": true,
@@ -113,7 +135,7 @@
             "original_price": "84.98",
             "bundle_price": "69.99",
             "savings": "14.99",
-            "cta_url": "shopify://products/creatine-monohydrate"
+            "cta_url": "shopify://collections/pieces-collection"
           }
         },
         "bundle_VcVg9f": {
@@ -141,6 +163,18 @@
     },
     "testimonials": {
       "type": "testimonials",
+      "blocks": {
+        "testimonial_txLDV7": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Sloe Fit's AI trainer completely changed how I approach the gym. My lifts went up 20% in two months—the progress is undeniable!",
+            "author": "Jake T., Crossfit Enthusiast"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_txLDV7"
+      ],
       "settings": {
         "heading": "Rated 5 Stars by Top Performers"
       }
@@ -162,6 +196,57 @@
         "input_placeholder": "Enter your email",
         "button_text": "Join the Movement"
       }
+    },
+    "related_products_nVyfji": {
+      "type": "related-products",
+      "blocks": {
+        "product_3bNNnJ": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "rating": 5,
+            "review_count": 47
+          }
+        },
+        "product_Edt6rQ": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "rating": 4,
+            "review_count": 32
+          }
+        },
+        "product_TiAxxG": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "rating": 5,
+            "review_count": 28
+          }
+        },
+        "product_pjdTAJ": {
+          "type": "product",
+          "settings": {
+            "product": "",
+            "rating": 4,
+            "review_count": 19
+          }
+        }
+      },
+      "block_order": [
+        "product_3bNNnJ",
+        "product_Edt6rQ",
+        "product_TiAxxG",
+        "product_pjdTAJ"
+      ],
+      "name": "Related Products",
+      "settings": {
+        "heading": "You May Also Like",
+        "subheading": "Complete your fitness routine with these complementary products",
+        "collection": "",
+        "show_view_all": true,
+        "view_all_text": "View All Products"
+      }
     }
   },
   "order": [
@@ -174,6 +259,7 @@
     "bundle-selector",
     "testimonials",
     "brand-story",
-    "newsletter"
+    "newsletter",
+    "related_products_nVyfji"
   ]
 }

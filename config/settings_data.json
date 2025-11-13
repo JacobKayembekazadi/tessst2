@@ -1,0 +1,40 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "current": {
+    "sections": {
+      "announcement-bar": {
+        "type": "announcement-bar",
+        "settings": {
+          "announcement_text": "🚀 Limited Time: Get 50% Off Your First Month of the Sloe Fit App!"
+        }
+      },
+      "header": {
+        "type": "header",
+        "settings": {
+          "logo_text": "SLOE FIT",
+          "menu": "main-menu"
+        }
+      },
+      "footer": {
+        "type": "footer",
+        "settings": {
+          "menu_quick_links": "footer",
+          "menu_support": "customer-account-main-menu",
+          "menu_legal": "footer",
+          "instagram_url": "",
+          "twitter_url": "",
+          "tiktok_url": ""
+        }
+      }
+    },
+    "content_for_index": []
+  }
+}
