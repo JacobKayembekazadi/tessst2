@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "cart-items": {
+      "type": "cart-items"
+    },
+    "cart-recommendations": {
+      "type": "cart-recommendations"
+    }
+  },
+  "order": [
+    "cart-items",
+    "cart-recommendations"
+  ]
+}

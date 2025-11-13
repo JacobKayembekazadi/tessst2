@@ -1,0 +1,226 @@
+<section class="bg-sloe-bg-default py-8 md:py-16">
+  <div class="max-w-container mx-auto px-page">
+    <div class="text-center mb-8 md:mb-12">
+      <h3 class="text-2xl md:text-3xl font-bold font-heading text-sloe-text-headings mb-4">
+        {{ section.settings.heading }}
+      </h3>
+      <p class="text-base md:text-lg text-sloe-text-body max-w-2xl mx-auto">
+        {{ section.settings.subheading }}
+      </p>
+    </div>
+
+    <!-- Product Grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+      {% for product_block in section.blocks %}
+        {% assign product = collections[section.settings.collection].products[forloop.index0] | default: all_products[product_block.settings.product] %}
+        {% if product %}
+          <div class="bg-sloe-bg-card rounded-card overflow-hidden hover:shadow-lg transition-all duration-300 group">
+            
+            <!-- Product Image -->
+            <div class="aspect-square bg-sloe-bg-border relative overflow-hidden">
+              {% if product.featured_image %}
+                <img 
+                  src="{{ product.featured_image | img_url: '400x400' }}" 
+                  alt="{{ product.featured_image.alt | escape }}"
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  loading="lazy"
+                >
+              {% else %}
+                <div class="w-full h-full flex items-center justify-center text-sloe-text-body">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+              {% endif %}
+              
+              <!-- Quick Add Button (appears on hover) -->
+              <div class="absolute inset-0 bg-black/50 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                <button class="bg-sloe-primary text-sloe-text-on-primary px-4 py-2 rounded-btn font-medium hover:bg-sloe-accent transition-colors transform translate-y-4 group-hover:translate-y-0 duration-300">
+                  Quick Add
+                </button>
+              </div>
+
+              <!-- Sale Badge -->
+              {% if product.compare_at_price > product.price %}
+                <div class="absolute top-3 left-3 bg-sloe-primary text-sloe-text-on-primary px-2 py-1 rounded text-xs font-bold">
+                  SALE
+                </div>
+              {% endif %}
+            </div>
+
+            <!-- Product Info -->
+            <div class="p-4 md:p-6">
+              <h4 class="font-bold text-sloe-text-headings mb-2 line-clamp-2 group-hover:text-sloe-primary transition-colors duration-200">
+                <a href="{{ product.url }}" class="block">
+                  {{ product.title | default: "Sample Product" }}
+                </a>
+              </h4>
+              
+              <!-- Price -->
+              <div class="flex items-center gap-2 mb-3">
+                {% if product.compare_at_price > product.price %}
+                  <span class="text-lg font-bold text-sloe-primary">
+                    {{ product.price | money }}
+                  </span>
+                  <span class="text-sm text-sloe-text-body line-through">
+                    {{ product.compare_at_price | money }}
+                  </span>
+                {% else %}
+                  <span class="text-lg font-bold text-sloe-primary">
+                    {{ product.price | money | default: "$49.99" }}
+                  </span>
+                {% endif %}
+              </div>
+
+              <!-- Rating -->
+              <div class="flex items-center gap-2 mb-4">
+                <div class="flex items-center gap-1">
+                  {% assign rating = product_block.settings.rating | default: 5 %}
+                  {% for i in (1..5) %}
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 {% if i <= rating %}text-sloe-primary{% else %}text-gray-500{% endif %}" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                    </svg>
+                  {% endfor %}
+                </div>
+                <span class="text-sm text-sloe-text-body">({{ product_block.settings.review_count | default: 24 }})</span>
+              </div>
+
+              <!-- Add to Cart Button -->
+              <a 
+                href="{{ product.url }}" 
+                class="w-full bg-sloe-bg-border text-sloe-text-headings rounded-btn py-3 px-4 font-medium hover:bg-sloe-primary hover:text-sloe-text-on-primary transition-colors duration-200 text-center block"
+              >
+                {% if product.available %}
+                  View Product
+                {% else %}
+                  Sold Out
+                {% endif %}
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+
+    <!-- View All Button -->
+    {% if section.settings.show_view_all %}
+      <div class="text-center mt-8 md:mt-12">
+        <a 
+          href="{{ collections[section.settings.collection].url | default: '/collections/all' }}" 
+          class="border border-sloe-primary text-sloe-primary rounded-btn py-3 px-6 font-bold font-heading hover:bg-sloe-primary hover:text-sloe-text-on-primary transition-colors duration-200 inline-block"
+        >
+          {{ section.settings.view_all_text }}
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Related Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Section Heading",
+      "default": "You May Also Like"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Complete your fitness routine with these complementary products"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Related Products Collection"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show View All Button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_text",
+      "label": "View All Button Text",
+      "default": "View All Products"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Related Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "range",
+          "id": "rating",
+          "label": "Star Rating",
+          "min": 1,
+          "max": 5,
+          "step": 1,
+          "default": 5
+        },
+        {
+          "type": "number",
+          "id": "review_count",
+          "label": "Review Count",
+          "default": 24
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Related Products",
+      "blocks": [
+        {
+          "type": "product",
+          "settings": {
+            "rating": 5,
+            "review_count": 47
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "rating": 4,
+            "review_count": 32
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "rating": 5,
+            "review_count": 28
+          }
+        },
+        {
+          "type": "product",
+          "settings": {
+            "rating": 4,
+            "review_count": 19
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

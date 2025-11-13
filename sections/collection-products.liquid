@@ -1,0 +1,272 @@
+{% paginate collection.products by section.settings.products_per_page %}
+
+<section class="bg-sloe-bg-default py-8 sm:py-12 md:py-16">
+  <div class="max-w-container mx-auto px-4 sm:px-6 lg:px-page">
+    
+    <!-- Filters and Sort (Mobile First Design) -->
+    <div class="flex flex-col sm:flex-row gap-4 mb-8">
+      
+      <!-- Mobile Filter Toggle -->
+      <button 
+        id="filter-toggle" 
+        class="sm:hidden bg-sloe-bg-card text-sloe-text-headings border border-sloe-bg-border rounded-btn py-3 px-4 font-medium flex items-center justify-center gap-2"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.707A1 1 0 013 7V4z" />
+        </svg>
+        Filters & Sort
+      </button>
+
+      <!-- Desktop Filters (always visible on desktop) -->
+      <div id="filter-panel" class="hidden sm:flex flex-col sm:flex-row gap-4 w-full">
+        
+        <!-- Sort Dropdown -->
+        <div class="flex-1 sm:flex-none sm:min-w-48">
+          <label for="sort-select" class="block text-sm text-sloe-text-body mb-2 sm:hidden">Sort by:</label>
+          <select id="sort-select" class="w-full bg-sloe-bg-card text-sloe-text-headings border border-sloe-bg-border rounded-btn py-3 px-4">
+            <option value="manual">Featured</option>
+            <option value="price-ascending">Price: Low to High</option>
+            <option value="price-descending">Price: High to Low</option>
+            <option value="title-ascending">Name: A-Z</option>
+            <option value="title-descending">Name: Z-A</option>
+            <option value="created-ascending">Oldest First</option>
+            <option value="created-descending">Newest First</option>
+            <option value="best-selling">Best Selling</option>
+          </select>
+        </div>
+
+        <!-- Price Filter -->
+        <div class="flex-1 sm:flex-none sm:min-w-48">
+          <label for="price-filter" class="block text-sm text-sloe-text-body mb-2 sm:hidden">Price range:</label>
+          <select id="price-filter" class="w-full bg-sloe-bg-card text-sloe-text-headings border border-sloe-bg-border rounded-btn py-3 px-4">
+            <option value="">All Prices</option>
+            <option value="0-25">Under $25</option>
+            <option value="25-50">$25 - $50</option>
+            <option value="50-100">$50 - $100</option>
+            <option value="100-200">$100 - $200</option>
+            <option value="200-plus">$200+</option>
+          </select>
+        </div>
+
+        <!-- Category Filter -->
+        {% if collections.size > 1 %}
+          <div class="flex-1 sm:flex-none sm:min-w-48">
+            <label for="category-filter" class="block text-sm text-sloe-text-body mb-2 sm:hidden">Category:</label>
+            <select id="category-filter" class="w-full bg-sloe-bg-card text-sloe-text-headings border border-sloe-bg-border rounded-btn py-3 px-4">
+              <option value="">All Categories</option>
+              {% for collection in collections %}
+                <option value="{{ collection.handle }}">{{ collection.title }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    {% if collection.products.size > 0 %}
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
+        {% for product in collection.products %}
+          <div class="bg-sloe-bg-card rounded-card overflow-hidden hover:shadow-lg transition-all duration-300 group">
+            
+            <!-- Product Image -->
+            <div class="aspect-square bg-sloe-bg-border relative overflow-hidden">
+              {% if product.featured_image %}
+                <a href="{{ product.url }}">
+                  <img 
+                    src="{{ product.featured_image | img_url: '400x400' }}" 
+                    alt="{{ product.featured_image.alt | escape }}"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  >
+                </a>
+              {% else %}
+                <div class="w-full h-full flex items-center justify-center text-sloe-text-body">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-12 sm:h-16 w-12 sm:w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                </div>
+              {% endif %}
+              
+              <!-- Quick Add Button (hidden on mobile) -->
+              <div class="absolute inset-0 bg-black/50 items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:flex">
+                <button class="bg-sloe-primary text-sloe-text-on-primary px-4 py-2 rounded-btn font-medium hover:bg-sloe-accent transition-colors">
+                  Quick Add
+                </button>
+              </div>
+
+              <!-- Badges -->
+              <div class="absolute top-2 left-2 flex flex-col gap-1">
+                {% if product.compare_at_price > product.price %}
+                  <span class="bg-sloe-primary text-sloe-text-on-primary px-2 py-1 rounded text-xs font-bold">
+                    SALE
+                  </span>
+                {% endif %}
+                {% unless product.available %}
+                  <span class="bg-gray-600 text-white px-2 py-1 rounded text-xs font-bold">
+                    SOLD OUT
+                  </span>
+                {% endunless %}
+              </div>
+            </div>
+
+            <!-- Product Info -->
+            <div class="p-4 sm:p-6">
+              <h3 class="font-bold text-sloe-text-headings mb-2 line-clamp-2 group-hover:text-sloe-primary transition-colors duration-200 text-sm sm:text-base">
+                <a href="{{ product.url }}" class="block">
+                  {{ product.title }}
+                </a>
+              </h3>
+              
+              <!-- Price -->
+              <div class="flex items-center gap-2 mb-3">
+                {% if product.compare_at_price > product.price %}
+                  <span class="text-base sm:text-lg font-bold text-sloe-primary">
+                    {{ product.price | money }}
+                  </span>
+                  <span class="text-sm text-sloe-text-body line-through">
+                    {{ product.compare_at_price | money }}
+                  </span>
+                  <span class="bg-sloe-primary text-sloe-text-on-primary px-1 py-0.5 rounded text-xs font-bold">
+                    {% assign savings = product.compare_at_price | minus: product.price %}
+                    {% assign savings_percent = savings | times: 100 | divided_by: product.compare_at_price %}
+                    {{ savings_percent }}% OFF
+                  </span>
+                {% else %}
+                  <span class="text-base sm:text-lg font-bold text-sloe-primary">
+                    {{ product.price | money }}
+                  </span>
+                {% endif %}
+              </div>
+
+              <!-- Product Rating (if available) -->
+              {% if product.metafields.reviews.rating %}
+                <div class="flex items-center gap-2 mb-4">
+                  <div class="flex items-center gap-1">
+                    {% assign rating = product.metafields.reviews.rating.value %}
+                    {% for i in (1..5) %}
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 sm:h-4 sm:w-4 {% if i <= rating %}text-sloe-primary{% else %}text-gray-500{% endif %}" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                      </svg>
+                    {% endfor %}
+                  </div>
+                  <span class="text-xs sm:text-sm text-sloe-text-body">({{ product.metafields.reviews.rating_count.value | default: 0 }})</span>
+                </div>
+              {% endif %}
+
+              <!-- CTA Button -->
+              <a 
+                href="{{ product.url }}" 
+                class="w-full {% if product.available %}bg-sloe-bg-border hover:bg-sloe-primary text-sloe-text-headings hover:text-sloe-text-on-primary{% else %}bg-gray-600 text-gray-400 cursor-not-allowed{% endif %} rounded-btn py-2 sm:py-3 px-4 font-medium transition-colors duration-200 text-center block text-sm sm:text-base"
+              >
+                {% if product.available %}
+                  View Product
+                {% else %}
+                  Sold Out
+                {% endif %}
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination -->
+      {% if paginate.pages > 1 %}
+        <nav class="flex justify-center mt-12" aria-label="Pagination">
+          <ul class="flex items-center gap-2">
+            {% if paginate.previous %}
+              <li>
+                <a href="{{ paginate.previous.url }}" class="flex items-center justify-center w-10 h-10 rounded-btn border border-sloe-bg-border text-sloe-text-body hover:border-sloe-primary hover:text-sloe-primary transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </li>
+            {% endif %}
+
+            {% for part in paginate.parts %}
+              {% if part.is_link %}
+                <li>
+                  <a href="{{ part.url }}" class="flex items-center justify-center w-10 h-10 rounded-btn border border-sloe-bg-border text-sloe-text-body hover:border-sloe-primary hover:text-sloe-primary transition-colors">
+                    {{ part.title }}
+                  </a>
+                </li>
+              {% else %}
+                <li>
+                  <span class="flex items-center justify-center w-10 h-10 rounded-btn bg-sloe-primary text-sloe-text-on-primary font-bold">
+                    {{ part.title }}
+                  </span>
+                </li>
+              {% endif %}
+            {% endfor %}
+
+            {% if paginate.next %}
+              <li>
+                <a href="{{ paginate.next.url }}" class="flex items-center justify-center w-10 h-10 rounded-btn border border-sloe-bg-border text-sloe-text-body hover:border-sloe-primary hover:text-sloe-primary transition-colors">
+                  <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                    <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd" />
+                  </svg>
+                </a>
+              </li>
+            {% endif %}
+          </ul>
+        </nav>
+      {% endif %}
+
+    {% else %}
+      <!-- Empty State -->
+      <div class="text-center py-16">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-24 w-24 mx-auto text-sloe-text-body/50 mb-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        </svg>
+        <h3 class="text-xl font-bold text-sloe-text-headings mb-4">No Products Found</h3>
+        <p class="text-sloe-text-body mb-6">We couldn't find any products in this collection.</p>
+        <a href="/collections/all" class="bg-sloe-primary text-sloe-text-on-primary rounded-btn py-3 px-6 font-bold hover:bg-sloe-accent transition-colors">
+          View All Products
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% endpaginate %}
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const filterToggle = document.getElementById('filter-toggle');
+  const filterPanel = document.getElementById('filter-panel');
+  
+  if (filterToggle && filterPanel) {
+    filterToggle.addEventListener('click', function() {
+      filterPanel.classList.toggle('hidden');
+      filterPanel.classList.toggle('flex');
+    });
+  }
+});
+</script>
+
+<style>
+.line-clamp-2 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Collection Products",
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 12,
+      "max": 48,
+      "step": 12,
+      "default": 24
+    }
+  ]
+}
+{% endschema %}

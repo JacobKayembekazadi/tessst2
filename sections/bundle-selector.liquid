@@ -1,20 +1,20 @@
-<section class="py-24 bg-sloe-bg-card border-y border-sloe-bg-border">
-  <div class="max-w-container mx-auto px-page">
-    <h2 class="text-4xl md:text-5xl font-bold font-heading text-sloe-text-headings text-center mb-4" style="line-height: 1.2">
+<section class="py-12 sm:py-16 md:py-24 bg-sloe-bg-card border-y border-sloe-bg-border">
+  <div class="max-w-container mx-auto px-4 sm:px-6 lg:px-page">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-sloe-text-headings text-center mb-4 leading-tight">
       {{ section.settings.heading_line1 }} <span class="text-sloe-primary">{{ section.settings.heading_line2 }}</span>
     </h2>
-    <p class="text-center text-lg text-sloe-text-body/90 mb-16 max-w-2xl mx-auto">
+    <p class="text-center text-base sm:text-lg text-sloe-text-body/90 mb-8 sm:mb-12 md:mb-16 max-w-2xl mx-auto px-4">
       {{ section.settings.subheading }}
     </p>
 
-    <div class="grid lg:grid-cols-5 gap-8">
+    <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 lg:gap-8">
       <!-- Left Column: Bundle Selection -->
-      <div class="lg:col-span-2 space-y-4" id="bundle-selector">
+      <div class="lg:col-span-2 space-y-3 sm:space-y-4" id="bundle-selector">
         {% for block in section.blocks %}
-          <div data-bundle-index="{{ forloop.index0 }}" class="bundle-option p-5 rounded-card border transition-all duration-200 cursor-pointer {% if forloop.first %}bg-sloe-bg-default border-sloe-primary ring-2 ring-sloe-primary/50{% else %}bg-sloe-bg-default/50 border-sloe-bg-border hover:border-sloe-accent{% endif %}">
-            <h3 class="text-xl font-bold font-heading text-sloe-text-headings">{{ block.settings.bundle_name }}</h3>
+          <div data-bundle-index="{{ forloop.index0 }}" class="bundle-option p-4 sm:p-5 rounded-card border transition-all duration-200 cursor-pointer {% if forloop.first %}bg-sloe-bg-default border-sloe-primary ring-2 ring-sloe-primary/50{% else %}bg-sloe-bg-default/50 border-sloe-bg-border hover:border-sloe-accent{% endif %}">
+            <h3 class="text-lg sm:text-xl font-bold font-heading text-sloe-text-headings">{{ block.settings.bundle_name }}</h3>
             <p class="text-sloe-text-body/80 mt-1 text-sm">{{ block.settings.bundle_description }}</p>
-            <p class="text-lg font-bold mt-2 text-sloe-primary">
+            <p class="text-base sm:text-lg font-bold mt-2 text-sloe-primary">
               Save ${{ block.settings.savings }}
             </p>
           </div>
@@ -22,10 +22,10 @@
       </div>
 
       <!-- Right Column: Bundle Details -->
-      <div class="lg:col-span-3 bg-sloe-bg-default p-8 rounded-card border border-sloe-bg-border sticky lg:top-24 h-fit" id="bundle-details">
+      <div class="lg:col-span-3 bg-sloe-bg-default p-4 sm:p-6 lg:p-8 rounded-card border border-sloe-bg-border lg:sticky lg:top-24 h-fit" id="bundle-details">
         <!-- Content will be dynamically updated by JS -->
         {% assign first_bundle = section.blocks.first %}
-        <h3 class="text-3xl font-bold font-heading text-sloe-text-headings mb-4 bundle-name">
+        <h3 class="text-xl sm:text-2xl md:text-3xl font-bold font-heading text-sloe-text-headings mb-4 bundle-name">
           {{ first_bundle.settings.bundle_name }} Details
         </h3>
 
@@ -33,29 +33,29 @@
         <div class="space-y-3 mb-6 bundle-items">
           {% assign items = first_bundle.settings.bundle_items | split: ',' %}
           {% for item in items %}
-            <div class="flex items-center text-sloe-text-body">
-              <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sloe-primary mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
-              <span class="text-lg">{{ item | strip }}</span>
+            <div class="flex items-start text-sloe-text-body">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 sm:h-5 sm:w-5 text-sloe-primary mr-3 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" /></svg>
+              <span class="text-sm sm:text-base md:text-lg">{{ item | strip }}</span>
             </div>
           {% endfor %}
         </div>
         
         <!-- Pricing -->
-        <div class="bg-sloe-bg-card p-5 rounded-btn border border-sloe-bg-border">
-          <p class="text-sm text-sloe-text-body/70 line-through bundle-original-price">Retail: ${{ first_bundle.settings.original_price }}</p>
-          <div class="flex justify-between items-end mt-1">
-            <p class="text-sloe-primary text-4xl font-bold font-heading bundle-price">
+        <div class="bg-sloe-bg-card p-4 sm:p-5 rounded-btn border border-sloe-bg-border">
+          <p class="text-xs sm:text-sm text-sloe-text-body/70 line-through bundle-original-price">Retail: ${{ first_bundle.settings.original_price }}</p>
+          <div class="flex flex-col sm:flex-row sm:justify-between sm:items-end mt-2 gap-2">
+            <p class="text-sloe-primary text-2xl sm:text-3xl md:text-4xl font-bold font-heading bundle-price">
               ${{ first_bundle.settings.bundle_price }}
             </p>
-            <span class="text-sloe-accent font-bold bg-sloe-primary/10 p-2 rounded-btn text-sm bundle-savings">
+            <span class="text-sloe-accent font-bold bg-sloe-primary/10 p-2 rounded-btn text-xs sm:text-sm bundle-savings text-center sm:text-right">
               YOU SAVE ${{ first_bundle.settings.savings }}
             </span>
           </div>
         </div>
 
         <!-- CTA -->
-        <div class="mt-8">
-          <a href="{{ first_bundle.settings.cta_url }}" class="bundle-cta bg-sloe-primary text-sloe-text-on-primary rounded-btn py-3 px-6 font-bold font-heading hover:bg-sloe-accent transition-colors duration-200 active:ring-4 ring-sloe-primary/50 w-full text-xl py-4 transition-transform transform hover:scale-[1.01] active:scale-100 inline-block text-center">
+        <div class="mt-6 sm:mt-8">
+          <a href="{{ first_bundle.settings.cta_url }}" class="bundle-cta bg-sloe-primary text-sloe-text-on-primary rounded-btn py-3 sm:py-4 px-6 font-bold font-heading hover:bg-sloe-accent transition-colors duration-200 active:ring-4 ring-sloe-primary/50 w-full text-base sm:text-lg md:text-xl transition-transform transform hover:scale-[1.01] active:scale-100 inline-block text-center">
           Add {{ first_bundle.settings.bundle_name }} to Cart
           </a>
         </div>

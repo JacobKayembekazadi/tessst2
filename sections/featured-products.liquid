@@ -1,28 +1,28 @@
-<section class="py-24 bg-sloe-bg-default">
-  <div class="max-w-container mx-auto px-page">
-    <h2 class="text-4xl md:text-5xl font-bold font-heading text-sloe-text-headings text-center" style="line-height: 1.2">
+<section class="py-12 sm:py-16 md:py-24 bg-sloe-bg-default">
+  <div class="max-w-container mx-auto px-4 sm:px-6 lg:px-page">
+    <h2 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-sloe-text-headings text-center leading-tight">
       {{ section.settings.heading }}
     </h2>
-    <p class="text-center text-lg text-sloe-text-body/90 mt-4 mb-16 max-w-2xl mx-auto">
+    <p class="text-center text-base sm:text-lg text-sloe-text-body/90 mt-4 mb-8 sm:mb-12 md:mb-16 max-w-2xl mx-auto px-4">
       {{ section.settings.subheading }}
     </p>
-    <div class="grid md:grid-cols-2 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
       {% for block in section.blocks limit: 2 %}
         {% assign product = all_products[block.settings.product] %}
         {% if product %}
           <div class="bg-sloe-bg-card rounded-card border border-sloe-bg-border overflow-hidden group hover:border-sloe-primary transition-all duration-300">
-            <div class="bg-sloe-bg-border h-80 w-full flex items-center justify-center relative overflow-hidden">
+            <div class="bg-sloe-bg-border h-64 sm:h-80 w-full flex items-center justify-center relative overflow-hidden">
               {% if product.featured_image %}
                 <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.title }}" class="w-full h-full object-cover">
               {% else %}
-                <span class="text-sloe-text-body opacity-50 text-lg z-10">Product Image</span>
+                <span class="text-sloe-text-body opacity-50 text-base sm:text-lg z-10">Product Image</span>
               {% endif %}
               <div class="absolute inset-0 bg-sloe-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
-            <div class="p-6">
-              <h3 class="text-2xl font-bold font-heading text-sloe-text-headings">{{ product.title }}</h3>
-              <p class="text-lg text-sloe-text-body mt-2">{{ product.price | money }}</p>
-              <a href="{{ product.url }}" class="mt-5 inline-block text-sm bg-sloe-primary text-sloe-text-on-primary rounded-btn py-3 px-6 font-bold font-heading hover:bg-sloe-accent transition-colors duration-200 active:ring-4 ring-sloe-primary/50">
+            <div class="p-4 sm:p-6">
+              <h3 class="text-lg sm:text-xl md:text-2xl font-bold font-heading text-sloe-text-headings">{{ product.title }}</h3>
+              <p class="text-base sm:text-lg text-sloe-text-body mt-2">{{ product.price | money }}</p>
+              <a href="{{ product.url }}" class="mt-4 sm:mt-5 inline-block text-sm bg-sloe-primary text-sloe-text-on-primary rounded-btn py-3 px-6 font-bold font-heading hover:bg-sloe-accent transition-colors duration-200 active:ring-4 ring-sloe-primary/50 w-full sm:w-auto text-center">
                 Add to Cart
               </a>
             </div>

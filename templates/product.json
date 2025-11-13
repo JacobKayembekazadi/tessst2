@@ -1,0 +1,22 @@
+{
+  "sections": {
+    "product-hero": {
+      "type": "product-hero"
+    },
+    "product-details": {
+      "type": "product-details"
+    },
+    "product-reviews": {
+      "type": "product-reviews"
+    },
+    "related-products": {
+      "type": "related-products"
+    }
+  },
+  "order": [
+    "product-hero",
+    "product-details", 
+    "product-reviews",
+    "related-products"
+  ]
+}

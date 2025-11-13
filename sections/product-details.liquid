@@ -1,0 +1,291 @@
+{% assign product = products[section.settings.product_handle] | default: product %}
+
+<section class="bg-sloe-bg-default py-8 md:py-16">
+  <div class="max-w-container mx-auto px-page">
+    
+    <!-- Product Tabs Navigation -->
+    <div class="flex flex-col sm:flex-row border-b border-sloe-bg-border mb-8 overflow-x-auto">
+      <button 
+        class="tab-button flex-shrink-0 px-6 py-4 text-left sm:text-center border-b-2 border-sloe-primary text-sloe-primary font-medium whitespace-nowrap" 
+        onclick="showTab('description')"
+        data-tab="description"
+      >
+        Description
+      </button>
+      <button 
+        class="tab-button flex-shrink-0 px-6 py-4 text-left sm:text-center border-b-2 border-transparent text-sloe-text-body font-medium hover:text-sloe-primary transition-colors whitespace-nowrap" 
+        onclick="showTab('ingredients')"
+        data-tab="ingredients"
+      >
+        Ingredients
+      </button>
+      <button 
+        class="tab-button flex-shrink-0 px-6 py-4 text-left sm:text-center border-b-2 border-transparent text-sloe-text-body font-medium hover:text-sloe-primary transition-colors whitespace-nowrap" 
+        onclick="showTab('usage')"
+        data-tab="usage"
+      >
+        How to Use
+      </button>
+      <button 
+        class="tab-button flex-shrink-0 px-6 py-4 text-left sm:text-center border-b-2 border-transparent text-sloe-text-body font-medium hover:text-sloe-primary transition-colors whitespace-nowrap" 
+        onclick="showTab('shipping')"
+        data-tab="shipping"
+      >
+        Shipping
+      </button>
+    </div>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      
+      <!-- Description Tab -->
+      <div id="description-tab" class="tab-pane">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+          <div class="space-y-6">
+            <h3 class="text-2xl md:text-3xl font-bold font-heading text-sloe-text-headings">
+              Product Details
+            </h3>
+            <div class="prose prose-invert max-w-none">
+              <p class="text-base md:text-lg text-sloe-text-body leading-relaxed">
+                {{ product.description | default: "Our premium supplement is scientifically formulated to support your fitness goals. Each serving delivers optimal nutrition to fuel your workouts and recovery." }}
+              </p>
+              
+              <h4 class="text-lg font-semibold text-sloe-text-headings mt-6 mb-3">Key Benefits:</h4>
+              <ul class="list-disc list-inside text-sloe-text-body space-y-2">
+                <li>Enhanced muscle performance and endurance</li>
+                <li>Faster recovery between training sessions</li>
+                <li>Improved focus and mental clarity</li>
+                <li>Support for lean muscle development</li>
+                <li>Third-party tested for purity and potency</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="bg-sloe-bg-card rounded-card p-6 space-y-4">
+            <h4 class="text-xl font-bold text-sloe-text-headings">Nutritional Facts</h4>
+            <div class="space-y-3 text-sm">
+              <div class="flex justify-between border-b border-sloe-bg-border pb-2">
+                <span class="text-sloe-text-body">Serving Size</span>
+                <span class="text-sloe-text-headings font-medium">1 scoop (30g)</span>
+              </div>
+              <div class="flex justify-between border-b border-sloe-bg-border pb-2">
+                <span class="text-sloe-text-body">Servings Per Container</span>
+                <span class="text-sloe-text-headings font-medium">30</span>
+              </div>
+              <div class="flex justify-between border-b border-sloe-bg-border pb-2">
+                <span class="text-sloe-text-body">Calories</span>
+                <span class="text-sloe-text-headings font-medium">120</span>
+              </div>
+              <div class="flex justify-between border-b border-sloe-bg-border pb-2">
+                <span class="text-sloe-text-body">Protein</span>
+                <span class="text-sloe-text-headings font-medium">25g</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-sloe-text-body">Total Carbohydrates</span>
+                <span class="text-sloe-text-headings font-medium">3g</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Ingredients Tab -->
+      <div id="ingredients-tab" class="tab-pane hidden">
+        <div class="max-w-4xl">
+          <h3 class="text-2xl md:text-3xl font-bold font-heading text-sloe-text-headings mb-8">
+            Premium Ingredients
+          </h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-sloe-bg-card rounded-card p-6">
+              <h4 class="text-lg font-bold text-sloe-text-headings mb-4">Active Ingredients</h4>
+              <div class="space-y-3">
+                <div class="flex justify-between">
+                  <span class="text-sloe-text-body">Whey Protein Isolate</span>
+                  <span class="text-sloe-text-headings">20g</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sloe-text-body">Creatine Monohydrate</span>
+                  <span class="text-sloe-text-headings">5g</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sloe-text-body">L-Glutamine</span>
+                  <span class="text-sloe-text-headings">3g</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sloe-text-body">BCAAs (2:1:1)</span>
+                  <span class="text-sloe-text-headings">6g</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-sloe-text-body">Beta-Alanine</span>
+                  <span class="text-sloe-text-headings">2g</span>
+                </div>
+              </div>
+            </div>
+            
+            <div class="bg-sloe-bg-card rounded-card p-6">
+              <h4 class="text-lg font-bold text-sloe-text-headings mb-4">Other Ingredients</h4>
+              <p class="text-sloe-text-body text-sm leading-relaxed">
+                Natural flavors, stevia leaf extract, citric acid, silicon dioxide, sunflower lecithin.
+              </p>
+              <div class="mt-4 pt-4 border-t border-sloe-bg-border">
+                <p class="text-sloe-text-body text-xs">
+                  <strong>Allergen Information:</strong> Contains milk. Manufactured in a facility that also processes soy, egg, peanuts, tree nuts, fish, and shellfish.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Usage Tab -->
+      <div id="usage-tab" class="tab-pane hidden">
+        <div class="max-w-4xl">
+          <h3 class="text-2xl md:text-3xl font-bold font-heading text-sloe-text-headings mb-8">
+            How to Use
+          </h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div class="bg-sloe-bg-card rounded-card p-6 text-center">
+              <div class="w-16 h-16 bg-sloe-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-sloe-text-on-primary font-bold text-xl">1</span>
+              </div>
+              <h4 class="text-lg font-bold text-sloe-text-headings mb-3">Mix</h4>
+              <p class="text-sloe-text-body text-sm">
+                Mix 1 scoop (30g) with 8-10 oz of cold water or your preferred beverage.
+              </p>
+            </div>
+            
+            <div class="bg-sloe-bg-card rounded-card p-6 text-center">
+              <div class="w-16 h-16 bg-sloe-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-sloe-text-on-primary font-bold text-xl">2</span>
+              </div>
+              <h4 class="text-lg font-bold text-sloe-text-headings mb-3">Time</h4>
+              <p class="text-sloe-text-body text-sm">
+                Take 30 minutes before your workout for optimal performance benefits.
+              </p>
+            </div>
+            
+            <div class="bg-sloe-bg-card rounded-card p-6 text-center">
+              <div class="w-16 h-16 bg-sloe-primary rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-sloe-text-on-primary font-bold text-xl">3</span>
+              </div>
+              <h4 class="text-lg font-bold text-sloe-text-headings mb-3">Consistency</h4>
+              <p class="text-sloe-text-body text-sm">
+                Use daily for best results. Can also be taken post-workout for recovery.
+              </p>
+            </div>
+          </div>
+          
+          <div class="mt-8 bg-sloe-bg-card rounded-card p-6">
+            <h4 class="text-lg font-bold text-sloe-text-headings mb-4">Important Notes</h4>
+            <ul class="list-disc list-inside text-sloe-text-body space-y-2 text-sm">
+              <li>Do not exceed recommended dosage</li>
+              <li>Consult your physician before use if you have any medical conditions</li>
+              <li>Not intended for use by persons under 18 years of age</li>
+              <li>Keep out of reach of children</li>
+              <li>Store in a cool, dry place</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Shipping Tab -->
+      <div id="shipping-tab" class="tab-pane hidden">
+        <div class="max-w-4xl">
+          <h3 class="text-2xl md:text-3xl font-bold font-heading text-sloe-text-headings mb-8">
+            Shipping Information
+          </h3>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div class="space-y-6">
+              <div class="bg-sloe-bg-card rounded-card p-6">
+                <h4 class="text-lg font-bold text-sloe-text-headings mb-4">Shipping Options</h4>
+                <div class="space-y-3">
+                  <div class="flex justify-between items-center">
+                    <span class="text-sloe-text-body">Standard (5-7 business days)</span>
+                    <span class="text-sloe-text-headings font-medium">$5.99</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-sloe-text-body">Express (2-3 business days)</span>
+                    <span class="text-sloe-text-headings font-medium">$12.99</span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="text-sloe-text-body">Next Day</span>
+                    <span class="text-sloe-text-headings font-medium">$24.99</span>
+                  </div>
+                  <div class="flex justify-between items-center border-t border-sloe-bg-border pt-3">
+                    <span class="text-sloe-primary font-medium">Free shipping on orders $50+</span>
+                    <span class="text-sloe-primary font-medium">FREE</span>
+                  </div>
+                </div>
+              </div>
+              
+              <div class="bg-sloe-bg-card rounded-card p-6">
+                <h4 class="text-lg font-bold text-sloe-text-headings mb-4">Return Policy</h4>
+                <p class="text-sloe-text-body text-sm leading-relaxed">
+                  We offer a 30-day money-back guarantee on all products. If you're not completely satisfied with your purchase, return it within 30 days for a full refund.
+                </p>
+              </div>
+            </div>
+            
+            <div class="space-y-6">
+              <div class="bg-sloe-bg-card rounded-card p-6">
+                <h4 class="text-lg font-bold text-sloe-text-headings mb-4">Processing Time</h4>
+                <p class="text-sloe-text-body text-sm leading-relaxed mb-4">
+                  Orders are typically processed within 1-2 business days. You'll receive a tracking number once your order ships.
+                </p>
+                <div class="text-xs text-sloe-text-body">
+                  <p><strong>Order by 2 PM EST</strong> for same-day processing (Monday-Friday)</p>
+                </div>
+              </div>
+              
+              <div class="bg-sloe-bg-card rounded-card p-6">
+                <h4 class="text-lg font-bold text-sloe-text-headings mb-4">International Shipping</h4>
+                <p class="text-sloe-text-body text-sm leading-relaxed">
+                  Currently, we only ship within the United States. International shipping coming soon!
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function showTab(tabName) {
+  // Hide all tab panes
+  document.querySelectorAll('.tab-pane').forEach(pane => {
+    pane.classList.add('hidden');
+  });
+  
+  // Remove active styling from all tab buttons
+  document.querySelectorAll('.tab-button').forEach(button => {
+    button.classList.remove('border-sloe-primary', 'text-sloe-primary');
+    button.classList.add('border-transparent', 'text-sloe-text-body');
+  });
+  
+  // Show selected tab pane
+  document.getElementById(tabName + '-tab').classList.remove('hidden');
+  
+  // Add active styling to selected tab button
+  const activeButton = document.querySelector(`[data-tab="${tabName}"]`);
+  activeButton.classList.remove('border-transparent', 'text-sloe-text-body');
+  activeButton.classList.add('border-sloe-primary', 'text-sloe-primary');
+}
+</script>
+
+{% schema %}
+{
+  "name": "Product Details",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product_handle",
+      "label": "Product (optional - defaults to current product)"
+    }
+  ]
+}
+{% endschema %}

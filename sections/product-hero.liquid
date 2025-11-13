@@ -1,0 +1,201 @@
+{% assign product = products[section.settings.product_handle] | default: product %}
+
+<section class="bg-sloe-bg-default py-8 md:py-16">
+  <div class="max-w-container mx-auto px-page">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16">
+      
+      <!-- Product Images -->
+      <div class="space-y-4">
+        <!-- Main Product Image -->
+        <div class="aspect-square bg-sloe-bg-card rounded-card overflow-hidden">
+          {% if product.featured_image %}
+            <img 
+              src="{{ product.featured_image | img_url: '800x800' }}" 
+              alt="{{ product.featured_image.alt | escape }}"
+              class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+              loading="lazy"
+            >
+          {% else %}
+            <div class="w-full h-full flex items-center justify-center text-sloe-text-body">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </div>
+          {% endif %}
+        </div>
+
+        <!-- Thumbnail Images -->
+        {% if product.images.size > 1 %}
+          <div class="grid grid-cols-4 gap-2">
+            {% for image in product.images limit: 4 %}
+              <div class="aspect-square bg-sloe-bg-card rounded border-2 border-transparent hover:border-sloe-primary cursor-pointer overflow-hidden">
+                <img 
+                  src="{{ image | img_url: '200x200' }}" 
+                  alt="{{ image.alt | escape }}"
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                >
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+      </div>
+
+      <!-- Product Information -->
+      <div class="space-y-6 lg:space-y-8">
+        
+        <!-- Product Title -->
+        <div>
+          <h1 class="text-3xl md:text-4xl lg:text-5xl font-bold font-heading text-sloe-text-headings leading-tight">
+            {{ product.title | default: "Sample Product" }}
+          </h1>
+        </div>
+
+        <!-- Price -->
+        <div class="flex items-baseline gap-4">
+          {% if product.compare_at_price > product.price %}
+            <span class="text-2xl md:text-3xl font-bold text-sloe-primary">
+              {{ product.price | money }}
+            </span>
+            <span class="text-lg text-sloe-text-body line-through">
+              {{ product.compare_at_price | money }}
+            </span>
+            <span class="bg-sloe-primary text-sloe-text-on-primary px-2 py-1 rounded text-sm font-bold">
+              SAVE {{ product.compare_at_price | minus: product.price | money }}
+            </span>
+          {% else %}
+            <span class="text-2xl md:text-3xl font-bold text-sloe-primary">
+              {{ product.price | money | default: "$49.99" }}
+            </span>
+          {% endif %}
+        </div>
+
+        <!-- Product Description -->
+        <div class="prose prose-invert max-w-none">
+          <p class="text-base md:text-lg text-sloe-text-body leading-relaxed">
+            {{ product.description | default: "Experience the ultimate in fitness performance with our premium supplements. Scientifically formulated to help you achieve your peak potential." }}
+          </p>
+        </div>
+
+        <!-- Variant Selector -->
+        {% if product.variants.size > 1 %}
+          <div class="space-y-4">
+            {% for option in product.options_with_values %}
+              <div>
+                <label class="block text-sm font-medium text-sloe-text-headings mb-2">
+                  {{ option.name }}
+                </label>
+                <div class="flex flex-wrap gap-2">
+                  {% for value in option.values %}
+                    <button class="border border-sloe-bg-border bg-sloe-bg-card text-sloe-text-body px-4 py-2 rounded hover:border-sloe-primary hover:text-sloe-primary transition-colors duration-200 text-sm">
+                      {{ value }}
+                    </button>
+                  {% endfor %}
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        {% endif %}
+
+        <!-- Quantity and Add to Cart -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-4">
+            <label for="quantity" class="text-sm font-medium text-sloe-text-headings">
+              Quantity
+            </label>
+            <div class="flex items-center border border-sloe-bg-border rounded">
+              <button type="button" class="px-3 py-2 text-sloe-text-body hover:text-sloe-primary transition-colors" onclick="decreaseQuantity()">
+                −
+              </button>
+              <input 
+                type="number" 
+                id="quantity" 
+                name="quantity" 
+                value="1" 
+                min="1" 
+                class="w-16 text-center bg-transparent border-0 text-sloe-text-body focus:outline-none"
+              >
+              <button type="button" class="px-3 py-2 text-sloe-text-body hover:text-sloe-primary transition-colors" onclick="increaseQuantity()">
+                +
+              </button>
+            </div>
+          </div>
+
+          <!-- Add to Cart Button -->
+          <div class="flex flex-col sm:flex-row gap-4">
+            <button 
+              type="submit" 
+              class="flex-1 bg-sloe-primary text-sloe-text-on-primary rounded-btn py-4 px-6 font-bold font-heading hover:bg-sloe-accent transition-colors duration-200 active:ring-4 ring-sloe-primary/50 text-lg"
+            >
+              {% if product.available %}
+                Add to Cart - {{ product.price | money | default: "$49.99" }}
+              {% else %}
+                Sold Out
+              {% endif %}
+            </button>
+            <button 
+              type="button" 
+              class="border border-sloe-primary text-sloe-primary rounded-btn py-4 px-6 font-bold hover:bg-sloe-primary hover:text-sloe-text-on-primary transition-colors duration-200"
+              aria-label="Add to wishlist"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mx-auto" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Trust Badges -->
+        <div class="border-t border-sloe-bg-border pt-6 space-y-3">
+          <div class="flex items-center gap-3 text-sloe-text-body text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sloe-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+            </svg>
+            <span>Science-backed formula</span>
+          </div>
+          <div class="flex items-center gap-3 text-sloe-text-body text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sloe-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+            <span>Free shipping on orders over $50</span>
+          </div>
+          <div class="flex items-center gap-3 text-sloe-text-body text-sm">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-sloe-primary flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+            <span>30-day money-back guarantee</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+function decreaseQuantity() {
+  const input = document.getElementById('quantity');
+  const currentValue = parseInt(input.value) || 1;
+  if (currentValue > 1) {
+    input.value = currentValue - 1;
+  }
+}
+
+function increaseQuantity() {
+  const input = document.getElementById('quantity');
+  const currentValue = parseInt(input.value) || 1;
+  input.value = currentValue + 1;
+}
+</script>
+
+{% schema %}
+{
+  "name": "Product Hero",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product_handle",
+      "label": "Product (optional - defaults to current product)"
+    }
+  ]
+}
+{% endschema %}
