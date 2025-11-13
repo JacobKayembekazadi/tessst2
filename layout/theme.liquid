@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="{{ request.locale.iso_code }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page_title }}{% if current_tags %} &ndash; {{ 'general.meta.tags' | t: tags: current_tags | escape }}{% endif %}{% if current_page != 1 %} &ndash; {{ 'general.meta.page' | t: page: current_page }}{% endif %}{% unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless %}</title>
+
+  {% if page_description %}
+    <meta name="description" content="{{ page_description | escape }}">
+  {% endif %}
+
+  <link rel="canonical" href="{{ canonical_url }}">
+
+  <!-- Google Font: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Custom Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            'sloe-primary': '{{ settings.color_primary | default: "#00FF00" }}',
+            'sloe-secondary': '#FFFFFF',
+            'sloe-accent': '{{ settings.color_accent | default: "#32CD32" }}',
+            'sloe-text-headings': '{{ settings.color_text_headings | default: "#FFFFFF" }}',
+            'sloe-text-body': '{{ settings.color_text_body | default: "#FAFAFA" }}',
+            'sloe-text-on-primary': '#000000',
+            'sloe-bg-default': '{{ settings.color_bg_default | default: "#000000" }}',
+            'sloe-bg-card': '{{ settings.color_bg_card | default: "#121212" }}',
+            'sloe-bg-border': '#222222',
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Inter', 'sans-serif'],
+          },
+          maxWidth: {
+            'container': '1200px',
+          },
+          borderRadius: {
+            'btn': '4px',
+            'card': '8px',
+          },
+          spacing: {
+            'page': '24px',
+          }
+        }
+      }
+    }
+  </script>
+
+  {{ content_for_header }}
+
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: {{ settings.color_bg_default | default: "#000000" }};
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+  </style>
+
+  <script src="{{ 'theme.js' | asset_url }}" defer></script>
+</head>
+
+<body class="bg-sloe-bg-default text-sloe-text-body font-sans antialiased">
+  {% section 'announcement-bar' %}
+  {% section 'header' %}
+
+  <main role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+</body>
+</html>

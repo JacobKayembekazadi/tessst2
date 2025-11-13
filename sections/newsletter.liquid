@@ -1,0 +1,66 @@
+<section class="py-24 bg-sloe-bg-default">
+  <div class="max-w-container mx-auto px-page text-center max-w-2xl">
+    <h2 class="text-3xl md:text-4xl font-bold font-heading text-sloe-text-headings" style="line-height: 1.2">
+      {{ section.settings.heading }}
+    </h2>
+    <p class="text-lg text-sloe-text-body mt-4 leading-relaxed">
+      {{ section.settings.description }}
+    </p>
+    
+    <!-- Success/Error Message -->
+    <div id="newsletter-message" class="mt-6 p-4 rounded-btn font-bold hidden"></div>
+
+    <!-- Newsletter Form -->
+    <form id="newsletter-form" class="mt-10 flex flex-col md:flex-row gap-4 max-w-md mx-auto">
+      <input
+        type="email"
+        id="newsletter-email"
+        name="email"
+        placeholder="{{ section.settings.input_placeholder }}"
+        class="flex-grow bg-sloe-bg-card border border-sloe-bg-border rounded-btn px-4 py-3 text-sloe-text-body placeholder:text-sloe-text-body/50 focus:outline-none focus:ring-2 focus:ring-sloe-primary"
+        aria-label="Email for newsletter"
+        required
+      />
+      <button type="submit" class="bg-sloe-primary text-sloe-text-on-primary rounded-btn py-3 px-6 font-bold font-heading hover:bg-sloe-accent transition-colors duration-200 active:ring-4 ring-sloe-primary/50">
+        {{ section.settings.button_text }}
+      </button>
+    </form>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Newsletter Signup",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get Free Workouts & Early App Access"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Join our private email list for exclusive training tips and be the first to know when the Sloe Fit app drops."
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Input Placeholder",
+      "default": "Enter your email"
+    },
+    {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Join the Movement"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Newsletter Signup"
+    }
+  ]
+}
+{% endschema %}

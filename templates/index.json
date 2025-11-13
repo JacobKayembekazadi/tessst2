@@ -1,0 +1,42 @@
+{
+  "sections": {
+    "hero": {
+      "type": "hero"
+    },
+    "trust-badges": {
+      "type": "trust-badges"
+    },
+    "how-it-works": {
+      "type": "how-it-works"
+    },
+    "featured-app": {
+      "type": "featured-app"
+    },
+    "featured-products": {
+      "type": "featured-products"
+    },
+    "bundle-selector": {
+      "type": "bundle-selector"
+    },
+    "testimonials": {
+      "type": "testimonials"
+    },
+    "brand-story": {
+      "type": "brand-story"
+    },
+    "newsletter": {
+      "type": "newsletter"
+    }
+  },
+  "order": [
+    "hero",
+    "trust-badges",
+    "how-it-works",
+    "featured-app",
+    "featured-products",
+    "bundle-selector",
+    "testimonials",
+    "brand-story",
+    "newsletter"
+  ]
+}

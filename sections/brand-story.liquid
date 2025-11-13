@@ -1,0 +1,51 @@
+<section class="py-24 bg-sloe-bg-card border-y border-sloe-bg-border">
+  <div class="max-w-container mx-auto px-page text-center max-w-3xl">
+    <h2 class="text-4xl md:text-5xl font-bold font-heading text-sloe-text-headings" style="line-height: 1.2">
+      {{ section.settings.heading }}
+    </h2>
+    <p class="text-lg text-sloe-text-body leading-relaxed mt-6">
+      {{ section.settings.description }}
+    </p> 
+    <div class="mt-10">
+      <a href="{{ section.settings.cta_url }}" class="bg-transparent text-sloe-secondary rounded-btn py-3 px-6 font-bold font-heading border border-sloe-secondary hover:bg-sloe-secondary hover:text-sloe-text-on-primary transition-colors duration-200 active:ring-4 ring-sloe-secondary/50 inline-block">
+        {{ section.settings.cta_text }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Brand Story",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "We Make Fitness Simple."
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Our mission is to create a single, holistic ecosystem for your health. No more conflicting advice, no more disjointed apps and supplements. Just one platform, one goal: your peak performance."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Discover Our Mission"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Story"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,74 @@
+<header class="sticky top-0 bg-sloe-bg-default/80 backdrop-blur-sm z-50 border-b border-sloe-bg-border">
+  <nav class="max-w-container mx-auto px-page h-20 flex justify-between items-center">
+    <!-- Logo -->
+    <div class="text-2xl font-bold font-heading text-sloe-text-headings">
+      <a href="/">{{ section.settings.logo_text }}</a>
+    </div>
+
+    <!-- Desktop Navigation -->
+    <ul class="hidden md:flex items-center space-x-8">
+      {% for link in linklists[section.settings.menu].links %}
+        <li>
+          <a href="{{ link.url }}" class="text-sloe-text-body hover:text-sloe-primary transition-colors duration-200">
+            {{ link.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Icons (Cart & Mobile Menu Button) -->
+    <div class="flex items-center space-x-4">
+      <!-- Cart Icon -->
+      <a href="/cart" class="text-sloe-text-headings hover:text-sloe-primary transition-colors duration-200" aria-label="Open cart">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
+        </svg>
+      </a>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button id="mobile-menu-toggle" class="md:hidden text-sloe-text-headings hover:text-sloe-primary transition-colors duration-200" aria-label="Toggle menu">
+        <!-- Hamburger Icon -->
+        <svg id="hamburger-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16m-7 6h7" />
+        </svg>
+        <!-- Close X Icon (hidden by default) -->
+        <svg id="close-icon" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 top-20 bg-sloe-bg-default/95 backdrop-blur-sm z-40 md:hidden hidden transition-opacity duration-300">
+    <ul class="flex flex-col space-y-4 p-page text-2xl font-heading">
+      {% for link in linklists[section.settings.menu].links %}
+        <li class="border-b border-sloe-bg-border last:border-b-0">
+          <a href="{{ link.url }}" class="text-sloe-text-headings hover:text-sloe-primary transition-colors duration-200 block py-4 text-center">
+            {{ link.title }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</header>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "text",
+      "id": "logo_text",
+      "label": "Logo Text",
+      "default": "SLOE FIT"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    }
+  ]
+}
+{% endschema %}

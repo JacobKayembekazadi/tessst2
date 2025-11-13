@@ -1,0 +1,19 @@
+<div class="bg-sloe-primary text-sloe-text-on-primary text-center py-2 px-page text-sm font-medium">
+  <p class="uppercase tracking-widest">
+    {{ section.settings.announcement_text }}
+  </p>
+</div>
+
+{% schema %}
+{
+  "name": "Announcement Bar",
+  "settings": [
+    {
+      "type": "text",
+      "id": "announcement_text",
+      "label": "Announcement Text",
+      "default": "🚀 Limited Time: Get 50% Off Your First Month of the Sloe Fit App!"
+    }
+  ]
+}
+{% endschema %}

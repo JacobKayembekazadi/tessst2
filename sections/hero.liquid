@@ -1,0 +1,57 @@
+<section class="bg-sloe-bg-default py-32 md:py-48 text-center">
+  <div class="max-w-container mx-auto px-page">
+    <h1 class="text-5xl md:text-7xl font-bold font-heading text-sloe-text-headings" style="line-height: 1.2">
+      {{ section.settings.heading_line1 }} <span class="text-sloe-primary">{{ section.settings.heading_line2 }}</span>
+    </h1>
+    <p class="text-lg md:text-xl text-sloe-text-body leading-relaxed mt-6 max-w-2xl mx-auto">
+      {{ section.settings.subheading }}
+    </p>
+    <div class="mt-10">
+      <a href="{{ section.settings.cta_url }}" class="bg-sloe-primary text-sloe-text-on-primary rounded-btn py-3 px-6 font-bold font-heading hover:bg-sloe-accent transition-colors duration-200 active:ring-4 ring-sloe-primary/50 text-lg inline-block">
+        {{ section.settings.cta_text }}
+      </a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading_line1",
+      "label": "Heading Line 1",
+      "default": "Train Smarter. Perform Better."
+    },
+    {
+      "type": "text",
+      "id": "heading_line2",
+      "label": "Heading Line 2 (Highlighted)",
+      "default": "Unlock Your Peak."
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Stop guessing your way to progress. Get your fully integrated system: AI-powered training and premium, science-backed supplements."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Start Your Free Trial Today"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Hero Section"
+    }
+  ]
+}
+{% endschema %}

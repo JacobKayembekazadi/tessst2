@@ -1,0 +1,73 @@
+<section class="py-24 bg-sloe-bg-default">
+  <div class="max-w-container mx-auto px-page">
+    <h2 class="text-4xl md:text-5xl font-bold font-heading text-sloe-text-headings text-center" style="line-height: 1.2">
+      {{ section.settings.heading }}
+    </h2>
+    <p class="text-center text-lg text-sloe-text-body/90 mt-4 mb-16 max-w-2xl mx-auto">
+      {{ section.settings.subheading }}
+    </p>
+    <div class="grid md:grid-cols-2 gap-8">
+      {% for block in section.blocks limit: 2 %}
+        {% assign product = all_products[block.settings.product] %}
+        {% if product %}
+          <div class="bg-sloe-bg-card rounded-card border border-sloe-bg-border overflow-hidden group hover:border-sloe-primary transition-all duration-300">
+            <div class="bg-sloe-bg-border h-80 w-full flex items-center justify-center relative overflow-hidden">
+              {% if product.featured_image %}
+                <img src="{{ product.featured_image | img_url: '600x' }}" alt="{{ product.title }}" class="w-full h-full object-cover">
+              {% else %}
+                <span class="text-sloe-text-body opacity-50 text-lg z-10">Product Image</span>
+              {% endif %}
+              <div class="absolute inset-0 bg-sloe-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </div>
+            <div class="p-6">
+              <h3 class="text-2xl font-bold font-heading text-sloe-text-headings">{{ product.title }}</h3>
+              <p class="text-lg text-sloe-text-body mt-2">{{ product.price | money }}</p>
+              <a href="{{ product.url }}" class="mt-5 inline-block text-sm bg-sloe-primary text-sloe-text-on-primary rounded-btn py-3 px-6 font-bold font-heading hover:bg-sloe-accent transition-colors duration-200 active:ring-4 ring-sloe-primary/50">
+                Add to Cart
+              </a>
+            </div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured Products",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Fuel Your Performance"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Clean ingredients. Maximum results. Shop our best-selling supplements."
+    }
+  ],
+  "max_blocks": 2,
+  "blocks": [
+    {
+      "type": "product",
+      "name": "Product",
+      "settings": [
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
+}
+{% endschema %}

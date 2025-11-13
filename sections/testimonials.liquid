@@ -1,0 +1,71 @@
+<section class="py-24 bg-sloe-bg-default">
+  <div class="max-w-container mx-auto px-page">
+    <h2 class="text-4xl font-bold font-heading text-sloe-text-headings text-center mb-16">
+      {{ section.settings.heading }}
+    </h2>
+    <div class="grid md:grid-cols-3 gap-8">
+      {% for block in section.blocks %}
+        <div class="bg-sloe-bg-card p-6 rounded-card border-l-4 border-sloe-primary shadow-xl shadow-sloe-primary/5">
+          <div class="flex text-yellow-500 mb-3">
+            {% for i in (1..5) %}
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.95a1 1 0 00.95.69h4.168c.969 0 1.371 1.24.588 1.81l-3.374 2.454a1 1 0 00-.364 1.118l1.286 3.95c.3.921-.755 1.688-1.54 1.118l-3.374-2.454a1 1 0 00-1.176 0l-3.374 2.454c-.785.57-1.84-.197-1.54-1.118l1.286-3.95a1 1 0 00-.364-1.118L2.091 9.385c-.783-.57-.38-1.81.588-1.81h4.168a1 1 0 00.95-.69l1.286-3.95z" /></svg>
+            {% endfor %}
+          </div>
+          <p class="text-base italic text-sloe-text-body/90 mb-4 leading-relaxed">"{{ block.settings.quote }}"</p>
+          <p class="font-bold text-sm text-sloe-primary">- {{ block.settings.author }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Rated 5 Stars by Top Performers"
+    }
+  ],
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "Sloe Fit's AI trainer completely changed how I approach the gym. My lifts went up 20% in two months—the progress is undeniable!"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Author",
+          "default": "Jake T., Crossfit Enthusiast"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

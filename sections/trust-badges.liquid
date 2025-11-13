@@ -1,0 +1,72 @@
+<section class="py-12 bg-sloe-bg-card border-y border-sloe-bg-border">
+  <div class="max-w-container mx-auto px-page">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-sloe-text-body">
+      {% for block in section.blocks %}
+        <div class="flex flex-col items-center justify-center space-y-2">
+          <div class="text-sloe-primary w-8 h-8 md:w-10 md:h-10">
+            {{ block.settings.svg_icon }}
+          </div>
+          <p class="text-sm md:text-base font-medium text-sloe-text-body">{{ block.settings.title }}</p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Trust Badges",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "badge",
+      "name": "Badge",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Science-Backed"
+        },
+        {
+          "type": "html",
+          "id": "svg_icon",
+          "label": "SVG Icon",
+          "default": "<svg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='currentColor' stroke-width='2'><path stroke-linecap='round' stroke-linejoin='round' d='M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 4.016M12 16.014a6.002 6.002 0 00-4-5.659v5.659h8v-5.659a6.002 6.002 0 00-4 5.659z' /></svg>"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust Badges",
+      "blocks": [
+        {
+          "type": "badge",
+          "settings": {
+            "title": "Science-Backed"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "title": "30-Day Guarantee"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "title": "AI Personalized"
+          }
+        },
+        {
+          "type": "badge",
+          "settings": {
+            "title": "Free Shipping $50+"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

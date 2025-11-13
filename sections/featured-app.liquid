@@ -1,0 +1,66 @@
+<section class="py-24 bg-sloe-bg-default">
+  <div class="max-w-container mx-auto px-page grid md:grid-cols-2 gap-12 items-center">
+    <div class="text-center md:text-left">
+      <h2 class="text-4xl md:text-5xl font-bold font-heading text-sloe-text-headings" style="line-height: 1.2">
+        {{ section.settings.heading }}
+      </h2>
+      <p class="text-lg text-sloe-text-body leading-relaxed mt-6">
+        {{ section.settings.description }}
+      </p>
+      <div class="mt-10">
+        <a href="{{ section.settings.cta_url }}" class="bg-transparent text-sloe-secondary rounded-btn py-3 px-6 font-bold font-heading border border-sloe-secondary hover:bg-sloe-secondary hover:text-sloe-text-on-primary transition-colors duration-200 active:ring-4 ring-sloe-secondary/50 inline-block">
+          {{ section.settings.cta_text }}
+        </a>
+      </div>
+    </div>
+    <!-- Image/Placeholder -->
+    <div class="bg-sloe-bg-border rounded-card h-96 w-full flex items-center justify-center shadow-2xl shadow-sloe-primary/10">
+      {% if section.settings.image %}
+        <img src="{{ section.settings.image | img_url: '800x' }}" alt="{{ section.settings.heading }}" class="w-full h-full object-cover rounded-card">
+      {% else %}
+        <span class="text-sloe-text-body opacity-50 text-lg">Image Placeholder</span>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured App",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Your Personal AI Trainer"
+    },
+    {
+      "type": "textarea",
+      "id": "description",
+      "label": "Description",
+      "default": "Stop guessing. Our AI coach analyzes your performance, adapts your workouts, and provides real-time feedback, all from your phone. It's like having a world-class trainer in your pocket, 24/7."
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Button Text",
+      "default": "Claim Your Free Trial"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA Button URL"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "App Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured App"
+    }
+  ]
+}
+{% endschema %}
