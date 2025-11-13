@@ -1,35 +1,172 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
-      "type": "hero"
+      "type": "hero",
+      "settings": {
+        "heading_line1": "Train Smarter. Perform Better.",
+        "heading_line2": "Unlock Your Peak.",
+        "subheading": "Stop guessing your way to progress. Get your fully integrated system: AI-powered training and premium, science-backed supplements.",
+        "cta_text": "Start Your Free Trial Today",
+        "cta_url": ""
+      }
+    },
+    "trust_badges_gCd644": {
+      "type": "trust-badges",
+      "blocks": {
+        "badge_A8xEDp": {
+          "type": "badge",
+          "settings": {
+            "title": "Science-Backed",
+            "svg_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 4.016M12 16.014a6.002 6.002 0 00-4-5.659v5.659h8v-5.659a6.002 6.002 0 00-4 5.659z\"></path></svg>"
+          }
+        },
+        "badge_EdgNwy": {
+          "type": "badge",
+          "settings": {
+            "title": "30-Day Guarantee",
+            "svg_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 4.016M12 16.014a6.002 6.002 0 00-4-5.659v5.659h8v-5.659a6.002 6.002 0 00-4 5.659z\"></path></svg>"
+          }
+        },
+        "badge_HEUheY": {
+          "type": "badge",
+          "settings": {
+            "title": "AI Personalized",
+            "svg_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 4.016M12 16.014a6.002 6.002 0 00-4-5.659v5.659h8v-5.659a6.002 6.002 0 00-4 5.659z\"></path></svg>"
+          }
+        },
+        "badge_apPAkT": {
+          "type": "badge",
+          "settings": {
+            "title": "Free Shipping $50+",
+            "svg_icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" fill=\"none\" viewbox=\"0 0 24 24\" stroke=\"currentColor\" stroke-width=\"2\"><path stroke-linecap=\"round\" stroke-linejoin=\"round\" d=\"M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 4.016M12 16.014a6.002 6.002 0 00-4-5.659v5.659h8v-5.659a6.002 6.002 0 00-4 5.659z\"></path></svg>"
+          }
+        }
+      },
+      "block_order": [
+        "badge_A8xEDp",
+        "badge_EdgNwy",
+        "badge_HEUheY",
+        "badge_apPAkT"
+      ],
+      "name": "Trust Badges",
+      "settings": {}
     },
     "trust-badges": {
-      "type": "trust-badges"
+      "type": "trust-badges",
+      "settings": {}
     },
     "how-it-works": {
-      "type": "how-it-works"
+      "type": "how-it-works",
+      "settings": {
+        "heading": "Three Steps to a New You",
+        "show_cta": true,
+        "cta_text": "I'm Ready to Start",
+        "cta_url": ""
+      }
     },
     "featured-app": {
-      "type": "featured-app"
+      "type": "featured-app",
+      "settings": {
+        "heading": "Your Personal AI Trainer",
+        "description": "Stop guessing. Our AI coach analyzes your performance, adapts your workouts, and provides real-time feedback, all from your phone. It's like having a world-class trainer in your pocket, 24/7.",
+        "cta_text": "Claim Your Free Trial",
+        "cta_url": "",
+        "image": "shopify://shop_images/sloe_side_profile_3.jpg"
+      }
     },
     "featured-products": {
-      "type": "featured-products"
+      "type": "featured-products",
+      "blocks": {
+        "product_NbLXPx": {
+          "type": "product",
+          "settings": {
+            "product": "creatine-monohydrate-5"
+          }
+        }
+      },
+      "block_order": [
+        "product_NbLXPx"
+      ],
+      "settings": {
+        "heading": "Fuel Your Performance",
+        "subheading": "Clean ingredients. Maximum results. Shop our best-selling supplements."
+      }
     },
     "bundle-selector": {
-      "type": "bundle-selector"
+      "type": "bundle-selector",
+      "blocks": {
+        "bundle_8tHyBH": {
+          "type": "bundle",
+          "settings": {
+            "bundle_name": "Performance Starter Pack",
+            "bundle_description": "Everything you need to kickstart your Sloe Fit journey.",
+            "bundle_items": "Edge Pre-Workout (1), Recover BCAAs (1)",
+            "original_price": "84.98",
+            "bundle_price": "69.99",
+            "savings": "14.99",
+            "cta_url": "shopify://products/creatine-monohydrate"
+          }
+        },
+        "bundle_VcVg9f": {
+          "type": "bundle",
+          "settings": {
+            "bundle_name": "Performance Starter Pack",
+            "bundle_description": "Everything you need to kickstart your Sloe Fit journey.",
+            "bundle_items": "Edge Pre-Workout (1), Recover BCAAs (1)",
+            "original_price": "84.98",
+            "bundle_price": "69.99",
+            "savings": "14.99",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "bundle_8tHyBH",
+        "bundle_VcVg9f"
+      ],
+      "settings": {
+        "heading_line1": "Don't Buy Retail.",
+        "heading_line2": "Bundle & Save Big.",
+        "subheading": "Choose a performance bundle below to get immediate discounts on our most popular products."
+      }
     },
     "testimonials": {
-      "type": "testimonials"
+      "type": "testimonials",
+      "settings": {
+        "heading": "Rated 5 Stars by Top Performers"
+      }
     },
     "brand-story": {
-      "type": "brand-story"
+      "type": "brand-story",
+      "settings": {
+        "heading": "We Make Fitness Simple.",
+        "description": "Our mission is to create a single, holistic ecosystem for your health. No more conflicting advice, no more disjointed apps and supplements. Just one platform, one goal: your peak performance.",
+        "cta_text": "Discover Our Mission",
+        "cta_url": ""
+      }
     },
     "newsletter": {
-      "type": "newsletter"
+      "type": "newsletter",
+      "settings": {
+        "heading": "Get Free Workouts & Early App Access",
+        "description": "Join our private email list for exclusive training tips and be the first to know when the Sloe Fit app drops.",
+        "input_placeholder": "Enter your email",
+        "button_text": "Join the Movement"
+      }
     }
   },
   "order": [
     "hero",
+    "trust_badges_gCd644",
     "trust-badges",
     "how-it-works",
     "featured-app",
